@@ -48,28 +48,11 @@ resource "aws_lambda_function" "lambda_demo" {
   handler = "main"
   runtime = "go1.x"
 
-
   s3_bucket = aws_s3_object.lambda-code.bucket
   s3_key    = aws_s3_object.lambda-code.key
 }
 
-#resource "aws_iam_role" "lambda_role_exec" {
-#  name = "lambda_gw_demo"
-#
-#  assume_role_policy = jsonencode({
-#    Version = "2012-10-17"
-#    Statement = [{
-#      Action = "sts:AssumeRole"
-#      Effect = "Allow"
-#      Sid    = ""
-#      Principal = {
-#        Service = "lambda.amazonaws.com"
-#      }
-#    }
-#    ]
-#  })
-#}
-
+// We need this to enable writing logs to CloudWatch
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
   role       = aws_iam_role.iam_for_lambda.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
