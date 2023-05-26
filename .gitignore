@@ -1,6 +1,9 @@
-main
+lambda/src/main
 *.zip
 terraform.tfstate
 .terraform.lock.hcl
 .terraform/*
 terraform.tfstate.backup
+.idea/
+lambda/.DS_Store
+lambda/src/.DS_Store
